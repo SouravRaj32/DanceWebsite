@@ -1,0 +1,83 @@
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const port = 80;
+
+// EXPRESS SPECIFIC STUFF
+app.use('/static', express.static('static')) // For serving static files
+app.use(express.urlencoded())
+
+// PUG SPECIFIC STUFF
+app.set('view engine', 'pug') // Set the template engine as pug
+app.set('views', path.join(__dirname, 'views')) // Set the views directory
+
+// ENDPOINTS
+app.get('/', (req, res)=>{
+    
+    const params = {}
+    res.status(200).render('index.pug', params);
+})
+
+// START THE SERVER
+app.listen(port, ()=>{
+    console.log(`The application started successfully on port ${port}`);
+});
+
+not skelton
+//- h1 My Site
+//- p Welcome to my super lame site.
+
+To use Mongoose in a Node.js project, follow these steps:
+
+Install Mongoose using NPM:
+bash
+Copy code
+npm install mongoose
+Require Mongoose in your Node.js application:
+javascript
+Copy code
+const mongoose = require('mongoose');
+Connect to a MongoDB database:
+javascript
+Copy code
+mongoose.connect('mongodb://localhost/mydatabase', { useNewUrlParser: true });
+Define a schema for your data:
+javascript
+Copy code
+const Schema = mongoose.Schema;
+
+const mySchema = new Schema({
+  name: String,
+  age: Number,
+  email: String
+});
+Create a model based on your schema:
+javascript
+Copy code
+const MyModel = mongoose.model('MyModel', mySchema);
+Use your model to perform CRUD operations:
+javascript
+Copy code
+// Create a new document
+const newDoc = new MyModel({
+  name: 'John Doe',
+  age: 30,
+  email: 'johndoe@example.com'
+});
+newDoc.save();
+
+// Read documents
+MyModel.find({}, (err, docs) => {
+  console.log(docs);
+});
+
+// Update documents
+MyModel.updateOne({ name: 'John Doe' }, { age: 31 }, (err, res) => {
+  console.log(res);
+});
+
+// Delete documents
+MyModel.deleteOne({ name: 'John Doe' }, (err) => {
+  console.log('Document deleted');
+});
