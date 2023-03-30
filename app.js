@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1/contactDance', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://souravraj32:Kc130deploy@souravbooking.fyxeibc.mongodb.net/dynamic?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('MongoDB connected...'))
 .catch(err => console.log(err));
 
